@@ -16,7 +16,19 @@ public class MyProject2 implements Project2 {
 
     @Override
     public void save(NodeList<Integer> nodeList, String fileName) {
-
+        try
+        {
+            BufferedWriter fw = new BufferedWriter(new FileWriter(fileName,true));
+            for (final Integer i : nodeList) {
+                fw.write(i);
+            }
+            fw.newLine();
+            fw.close();
+        }
+        catch(IOException ioe)
+        {
+            System.err.println("IOException");
+        }
     }
 
     @Override
