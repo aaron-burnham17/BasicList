@@ -46,13 +46,10 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> load(String fileName) {
-        NodeList list = new NodeList();
-        BufferedReader br = new BufferedReader(new FileReader(fileName));/*Riyam: may be you should put the line inside the try statement
-        because it's catching an unhandled exception error which is recommending to throw it in the method signature but we're not allowed to**/
-        
-        String c = "";
-
         try {
+            NodeList list = new NodeList();
+            BufferedReader br = new BufferedReader(new FileReader(fileName));
+            String c = "";
             while ((c = br.read()) != null) {
                 int i = Integer.parseInt(c);
                 list.append(i);
@@ -61,7 +58,6 @@ public class MyProject2 implements Project2 {
             br.close();
         }
         catch(IOException io){
-
         }
 
         return list;
