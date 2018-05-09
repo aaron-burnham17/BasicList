@@ -47,7 +47,9 @@ public class MyProject2 implements Project2 {
     @Override
     public NodeList<Integer> load(String fileName) {
         NodeList list = new NodeList();
-        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        BufferedReader br = new BufferedReader(new FileReader(fileName));/*Riyam: may be you should put the line inside the try statement
+        because it's catching an unhandled exception error which is recommending to throw it in the method signature but we're not allowed to**/
+        
         String c = "";
 
         try {
