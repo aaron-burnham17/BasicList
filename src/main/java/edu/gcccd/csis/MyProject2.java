@@ -33,7 +33,19 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> load(String fileName) {
-        return null;
+        NodeList list = new NodeList();
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
+        String c = "";
+
+        while( (c = br.read()) != null){
+            int i = Integer.parseInt(c);
+            list.append(i);
+        }
+
+        br.close();
+
+        return list;
+
     }
 
 
