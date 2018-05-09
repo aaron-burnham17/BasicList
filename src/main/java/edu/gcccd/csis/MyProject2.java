@@ -1,17 +1,30 @@
 package edu.gcccd.csis;
 
+import java.io.*;
 import java.util.Iterator;
 
 public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> addition(NodeList<Integer> nodeList1, NodeList<Integer> nodeList2) {
-        return null;
+        do {
+
+
+            while (nodeList1.iterator().next() + nodeList2.iterator().next() >= 9) {
+
+            }
+        }while(true);
     }
 
     @Override
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
-        return null;
+        if(iterator.hasNext()){
+            return addition(iterator.next(),addition(iterator));
+        }
+        else{
+            return iterator.next();
+        }
+
     }
 
     @Override
@@ -37,12 +50,17 @@ public class MyProject2 implements Project2 {
         BufferedReader br = new BufferedReader(new FileReader(fileName));
         String c = "";
 
-        while( (c = br.read()) != null){
-            int i = Integer.parseInt(c);
-            list.append(i);
-        }
+        try {
+            while ((c = br.read()) != null) {
+                int i = Integer.parseInt(c);
+                list.append(i);
+            }
 
-        br.close();
+            br.close();
+        }
+        catch(IOException io){
+
+        }
 
         return list;
 
