@@ -84,20 +84,24 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> load(String fileName) {
+
         NodeList list = new NodeList();
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
-            int c;
-            while ((br.read() != (int)(' '))) {
-                c = br.read();
+            char c;
+            while ((br.read() != (int) (' '))) {
+                c = (char)br.read();
                 list.append(c);
+                while ((c = (char)br.read()) != 0){
+                    c = (char)br.read();
+                    list.append(c);
+
+                }
+
+                br.close();
             }
-
-            br.close();
         }
-        catch(IOException io){
-
-        }
+        catch(IOException io){ }
 
         return list;
 
