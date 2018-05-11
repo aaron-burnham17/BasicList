@@ -71,8 +71,9 @@ public class MyProject2 implements Project2 {
         {
             BufferedWriter fw = new BufferedWriter(new FileWriter(fileName,true));
             for (final Integer i : nodeList) {
-                fw.write(i);
+                fw.write(i.toString());
             }
+           
             fw.newLine();
             fw.close();
         }
@@ -100,10 +101,12 @@ public class MyProject2 implements Project2 {
 
                 br.close();
             }
+            return list;
         }
-        catch(IOException io){ }
-
-        return list;
+        catch(IOException io){
+            System.err.println("IOException");
+            return list;
+        }
 
     }
 
@@ -113,6 +116,9 @@ public class MyProject2 implements Project2 {
 
         final NodeList<Integer> n1 = Project2.generateNumber(L); // (head 1st) e.g. 3457
         final NodeList<Integer> n2 = Project2.generateNumber(L); // (head 1st) e.g. 682
+        final String code = System.getProperty("user.dir") + File.separator +
+                "src" + File.separator + "main" + File.separator + "java" + File.separator +
+                MyProject2.class.getName().replace(".", File.separator) + ".java";
 
         final Project2 p = new MyProject2();
 
@@ -122,8 +128,12 @@ public class MyProject2 implements Project2 {
         for (int i = 0; i < 5; i++) {
             listOfLists.append(Project2.generateNumber(5));
         }
+
+        p.save(n1,code);
+
         //Iterator<NodeList<Integer>> listAdditive = listOfLists;
 //        p.save(p.addition(listOfLists.iterator()), "result.bin");
 //        Project2.print(p.load("result.bin"));
     }
 }
+
