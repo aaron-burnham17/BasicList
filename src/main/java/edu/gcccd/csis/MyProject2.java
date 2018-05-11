@@ -56,13 +56,13 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
+        NodeList<Integer> addOperand = iterator.next();
         if(iterator.hasNext()){
-            return addition(iterator.next(),addition(iterator));
+            return addition(addOperand,addition(iterator));
         }
         else{
-            return iterator.next();
+            return addOperand;
         }
-
     }
 
     @Override
@@ -122,8 +122,8 @@ public class MyProject2 implements Project2 {
         for (int i = 0; i < 5; i++) {
             listOfLists.append(Project2.generateNumber(5));
         }
-        //Iterator<NodeList<Integer>> listAdditive = listOfLists;
-//        p.save(p.addition(listOfLists.iterator()), "result.bin");
-//        Project2.print(p.load("result.bin"));
+        Project2.print(p.addition(listOfLists.iterator()));
+        //p.save(p.addition(listOfLists.iterator()), "result.bin");
+        //Project2.print(p.load("result.bin"));
     }
 }
