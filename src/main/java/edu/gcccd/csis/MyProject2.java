@@ -73,7 +73,6 @@ public class MyProject2 implements Project2 {
             for (final Integer i : nodeList) {
                 fw.write(i.toString());
             }
-           
             fw.newLine();
             fw.close();
         }
@@ -110,7 +109,7 @@ public class MyProject2 implements Project2 {
 
 
 
-    
+
     public static void main(final String[] args) {
         final int L = 30;
 
