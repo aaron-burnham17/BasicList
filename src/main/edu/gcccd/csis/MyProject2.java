@@ -101,13 +101,7 @@ public class MyProject2 implements Project2 {
     }
 
 
-    private static NodeList genNodeList(final String s) {
-        final NodeList nodeList = new NodeList<>();
-        for (final char c : s.toCharArray()) {
-            nodeList.append(Character.getNumericValue(c));
-        }
-        return nodeList;
-    }
+
 
 
 
