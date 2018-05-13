@@ -66,7 +66,6 @@ public class MyProject2 implements Project2 {
             for (final Integer i : nodeList) {
                 fw.write(i.toString());
             }
-           
             fw.newLine();
             fw.close();
         }
@@ -103,7 +102,7 @@ public class MyProject2 implements Project2 {
 
 
 
-    
+
     public static void main(final String[] args) {
         final int L = 30;
 
@@ -116,12 +115,20 @@ public class MyProject2 implements Project2 {
         Project2.print(p.addition(n1, n2)); //  n1+n2, e.g. 4139
 
         final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
-        for (int i = 0; i < L; i++) {
-            listOfLists.append(Project2.generateNumber(L));
+        for (int i = 0; i < 5; i++) {
+            listOfLists.append(Project2.generateNumber(5));
         }
 
         p.save(p.addition(listOfLists.iterator()), "result.bin");
         Project2.print(p.load("result.bin"));
+        Project2.print(p.addition(listOfLists.iterator()));
+        //p.save(p.addition(listOfLists.iterator()), "result.bin");
+        //Project2.print(p.load("result.bin"));
+
+
+        //Iterator<NodeList<Integer>> listAdditive = listOfLists;
+//        p.save(p.addition(listOfLists.iterator()), "result.bin");
+//        Project2.print(p.load("result.bin"));
 
     }
 }
