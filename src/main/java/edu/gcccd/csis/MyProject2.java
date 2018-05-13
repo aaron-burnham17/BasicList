@@ -57,12 +57,7 @@ public class MyProject2 implements Project2 {
     @Override
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
         NodeList<Integer> addOperand = iterator.next();
-        if(iterator.hasNext()){
-            return addition(addOperand,addition(iterator));
-        }
-        else{
-            return addOperand;
-        }
+        return iterator.hasNext() ? addition(addOperand,addition(iterator)) : addOperand;
     }
 
     @Override
@@ -125,8 +120,8 @@ public class MyProject2 implements Project2 {
         Project2.print(p.addition(n1, n2)); //  n1+n2, e.g. 4139
 
         final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
-        for (int i = 0; i < 5; i++) {
-            listOfLists.append(Project2.generateNumber(5));
+        for (int i = 0; i < L; i++) {
+            listOfLists.append(Project2.generateNumber(L));
         }
         Project2.print(p.addition(listOfLists.iterator()));
         //p.save(p.addition(listOfLists.iterator()), "result.bin");
@@ -140,4 +135,6 @@ public class MyProject2 implements Project2 {
 
     }
 }
+
+
 
