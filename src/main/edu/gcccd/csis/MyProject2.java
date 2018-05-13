@@ -1,6 +1,5 @@
 package edu.gcccd.csis;
 
-
 import java.io.*;
 import java.util.Iterator;
 
@@ -12,7 +11,7 @@ public class MyProject2 implements Project2 {
         NodeList<Integer> Remainder = new NodeList<Integer>();
         boolean noRemainder = true;
         int append = 0;
-        do {
+        while(nodeList1.iterator().hasNext() && nodeList2.iterator().hasNext()) {
             if(nodeList1.getLength() > nodeList2.getLength()){
                 Total.append(nodeList1.iterator().next());
                 nodeList1.remove(nodeList1.iterator().next());
@@ -40,9 +39,7 @@ public class MyProject2 implements Project2 {
                 }
                 Total.append(append);
             }
-
-
-        }while(nodeList1.iterator().hasNext() && nodeList2.iterator().hasNext());
+        }
         Remainder.append(0);
         if (noRemainder){
             while(Total.iterator().next() == 0){
@@ -58,12 +55,7 @@ public class MyProject2 implements Project2 {
     @Override
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
         NodeList<Integer> addOperand = iterator.next();
-        if(iterator.hasNext()){
-            return addition(addOperand,addition(iterator));
-        }
-        else{
-            return addOperand;
-        }
+        return iterator.hasNext() ? addition(addOperand,addition(iterator)) : addOperand;
     }
 
     @Override
@@ -90,28 +82,28 @@ public class MyProject2 implements Project2 {
         NodeList list = new NodeList();
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
-            char c;
-            while ((br.read() != (int) (' '))) {
-                c = (char)br.read();
-                list.append(c);
-                while ((c = (char)br.read()) != 0){
-                    c = (char)br.read();
-                    list.append(c);
 
+            int c = 0;
+            while( (c = br.read()) != -1){
+                if (c >= 48 && c <=57) {
+                    list.append( (c-48) );
                 }
-
-                br.close();
             }
+            br.close();
             return list;
         }
         catch(IOException io){
             System.err.println("IOException");
             return list;
         }
-
     }
 
 
+
+
+
+
+    
     public static void main(final String[] args) {
         final int L = 30;
 
@@ -119,28 +111,18 @@ public class MyProject2 implements Project2 {
         final NodeList<Integer> n2 = Project2.generateNumber(L); // (head 1st) e.g. 682
 
 
-
-//        final String code = System.getProperty("user.dir") + File.separator +
-//                "src" + File.separator + "main" + File.separator + "java" + File.separator +
-//                MyProject2.class.getName().replace(".", File.separator) + ".java";
-
         final Project2 p = new MyProject2();
-        long startTime = System.nanoTime();
+
         Project2.print(p.addition(n1, n2)); //  n1+n2, e.g. 4139
-        long stopTime = System.nanoTime();
-        System.out.println(stopTime - startTime);
 
-
-
-//        final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
-//        for (int i = 0; i < 5; i++) {
-//            listOfLists.append(Project2.generateNumber(5));
-//        }
-//        Project2.print(p.addition(listOfLists.iterator()));
+        final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
+        for (int i = 0; i < 5; i++) {
+            listOfLists.append(Project2.generateNumber(5));
+        }
+        Project2.print(p.addition(listOfLists.iterator()));
         //p.save(p.addition(listOfLists.iterator()), "result.bin");
         //Project2.print(p.load("result.bin"));
 
-//        p.save(n1,code);
 
         //Iterator<NodeList<Integer>> listAdditive = listOfLists;
 //        p.save(p.addition(listOfLists.iterator()), "result.bin");
@@ -148,4 +130,5 @@ public class MyProject2 implements Project2 {
 
     }
 }
+
 
