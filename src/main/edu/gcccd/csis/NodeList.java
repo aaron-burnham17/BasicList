@@ -75,8 +75,10 @@ public final class NodeList<E> implements Iterable<E> {
 
     // implement Iterable<E> interface
     @Override
-    public Iterator<E> iterator() {
-        return new Iterator<E>() {
+    public Iterator<E> iterator()
+    {
+        return new Iterator<E>()
+        {
             private Node<E> node = head;
 
             @Override
