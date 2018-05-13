@@ -119,10 +119,9 @@ public class MyProject2 implements Project2 {
         for (int i = 0; i < L; i++) {
             listOfLists.append(Project2.generateNumber(L));
         }
-        Project2.print(p.addition(listOfLists.iterator()));
 
-//        p.save(p.addition(listOfLists.iterator()), "result.bin");
-//        Project2.print(p.load("result.bin"));
+        p.save(p.addition(listOfLists.iterator()), "result.bin");
+        Project2.print(p.load("result.bin"));
 
     }
 }
