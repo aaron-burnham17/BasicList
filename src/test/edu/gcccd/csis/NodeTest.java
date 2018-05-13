@@ -19,9 +19,9 @@ public class NodeTest {
     }
 
     @Test
-   public void testAddition(){
+   public void testAdditionNodeList(){
 
-        //testing addition(NodeList1, NodeList2)
+        //testing normal addition
         final NodeList<Integer> n1 = Project2.generateNumber(30);
         final NodeList<Integer> n2 = Project2.generateNumber(30);
 
@@ -32,19 +32,60 @@ public class NodeTest {
 
           assertEquals(N3, genBigInteger(n3));
 
-        //testing addition(Iterator)
-        final NodeList<Integer> t1 = Project2.generateNumber(30);
-        final NodeList<Integer> t2 = Project2.generateNumber(30);
+          //testing an empty list
+        final NodeList<Integer> e1 = new NodeList<>();
+        final NodeList<Integer> e2 = new NodeList<>();
+        final NodeList<Integer> e3 = new MyProject2().addition(e1, e2);
+        assertEquals(0, e3.getLength());
 
 
-        final BigInteger T1 = genBigInteger(t1);
-        final BigInteger T2 = genBigInteger(t2);
-        final NodeList<Integer> t = new MyProject2().addition(t1, t2);
-        final BigInteger T = T1.add(T2);
 
 
-        assertEquals(T, genBigInteger(t));
-    }
+        //testing zeros
+
+
+//        //testing that it can add numbers of different digits correctly
+//        final NodeList<Integer> d1 = Project2.generateNumber(30);
+//        final NodeList<Integer> d2 = Project2.generateNumber(30);
+//
+//        final BigInteger D1 = genBigInteger(n1);
+//        final BigInteger D2 = genBigInteger(n2);
+//        final NodeList<Integer> d3 = new MyProject2().addition(d1, d2);
+//        final BigInteger D3 = D1.add(D2);
+//        assertEquals(D3, d3);
+
+
+
+        }
+
+//        @Test
+//        public void testAdditionIterator()
+//                {
+////                    final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
+////                    for (int i = 0; i < 5; i++) {
+////                        listOfLists.append(Project2.generateNumber(5));
+//
+//                    final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
+//                    for (int i = 0; i<5; i++) {
+//                       listOfLists.append(Project2.generateNumber(5));
+//                        final BigInteger T = genBigInteger();
+//                    }
+//
+//                    final NodeList<Integer> t = new MyProject2().addition(listOfLists.iterator());
+//
+//
+////            final NodeList<Integer> t1 = Project2.generateNumber(30);
+////            final NodeList<Integer> t2 = Project2.generateNumber(30);
+//
+//
+//                final BigInteger T1 = genBigInteger(t1);
+//                final BigInteger T2 = genBigInteger(t2);
+//
+//                final BigInteger T = T1.add(T2);
+//
+//
+//                assertEquals(T, genBigInteger(t));
+//        }
 
 
 
@@ -54,6 +95,17 @@ public class NodeTest {
             sb.append(i);
         }
         return new BigInteger(sb.toString());
+    }
+
+    @Test
+    public void testSave()
+    {
+        final NodeList<Integer> n1 = Project2.generateNumber(30);
+        final NodeList<Integer> n2 = Project2.generateNumber(30);
+
+
+        //p.save(p.addition(listOfLists.iterator()), "result.bin");
+        //Project2.print(p.load("result.bin"));
     }
 
 //    NodeList<Student> studentList;
