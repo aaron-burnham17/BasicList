@@ -109,7 +109,7 @@ public class MyProject2 implements Project2 {
 
         final Project2 p = new MyProject2();
 
-        Project2.print(p.addition(n1, n2)); //  n1+n2, e.g. 4139
+//        Project2.print(p.addition(n1, n2)); //  n1+n2, e.g. 4139
 
         final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
         for (int i = 0; i < L; i++) {
@@ -118,7 +118,7 @@ public class MyProject2 implements Project2 {
 
         p.save(p.addition(listOfLists.iterator()), "result.bin");
         Project2.print(p.load("result.bin"));
-        Project2.print(p.addition(listOfLists.iterator()));
+//        Project2.print(p.addition(listOfLists.iterator()));
 
         //p.save(p.addition(listOfLists.iterator()), "result.bin");
         //Project2.print(p.load("result.bin"));
