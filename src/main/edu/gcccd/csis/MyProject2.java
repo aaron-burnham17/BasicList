@@ -97,12 +97,6 @@ public class MyProject2 implements Project2 {
         }
     }
 
-
-
-
-
-
-
     public static void main(final String[] args) {
         final int L = 30;
 
@@ -124,11 +118,7 @@ public class MyProject2 implements Project2 {
         Project2.print(p.addition(listOfLists.iterator()));
         //p.save(p.addition(listOfLists.iterator()), "result.bin");
         //Project2.print(p.load("result.bin"));
-
-
-        //Iterator<NodeList<Integer>> listAdditive = listOfLists;
-//        p.save(p.addition(listOfLists.iterator()), "result.bin");
-//        Project2.print(p.load("result.bin"));
+        
 
     }
 }

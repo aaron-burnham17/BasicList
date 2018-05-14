@@ -11,14 +11,6 @@ import static org.junit.Assert.*;
 
 
 public class NodeTest {
-
-    @Before
-    public void setUp()
-    {
-
-    }
-
-    @Test
    public void testAddition(){
 
         //testing addition(NodeList1, NodeList2)
@@ -30,7 +22,7 @@ public class NodeTest {
         final NodeList<Integer> n3 = new MyProject2().addition(n1, n2);
         final BigInteger N3 = N1.add(N2);
 
-          assertEquals(N3, genBigInteger(n3));
+        assertEquals(N3, genBigInteger(n3));
 
         //testing addition(Iterator)
         final NodeList<Integer> t1 = Project2.generateNumber(30);
@@ -44,17 +36,17 @@ public class NodeTest {
 
 
         assertEquals(T, genBigInteger(t));
-    }
+   }
 
 
 
-        private static BigInteger genBigInteger(final NodeList<Integer> nodeList) {
+   private static BigInteger genBigInteger(final NodeList<Integer> nodeList) {
         final StringBuilder sb = new StringBuilder();
         for (final int i : nodeList) {
             sb.append(i);
         }
         return new BigInteger(sb.toString());
-    }
+   }
 
 //    NodeList<Student> studentList;
 //    private Student s;
