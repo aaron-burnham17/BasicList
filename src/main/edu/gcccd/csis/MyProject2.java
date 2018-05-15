@@ -7,49 +7,36 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> addition(NodeList<Integer> nodeList1, NodeList<Integer> nodeList2) {
+
         NodeList<Integer> Total = new NodeList<Integer>();
         NodeList<Integer> Remainder = new NodeList<Integer>();
         boolean noRemainder = true;
-        int append = 0;
-            while (nodeList1.iterator().hasNext() && nodeList2.iterator().hasNext()) {
-                if (nodeList1.getLength() > nodeList2.getLength()) {
-                    Total.append(nodeList1.iterator().next());
-                    nodeList1.remove(nodeList1.iterator().next());
-                    Remainder.append(0);
 
-                } else if (nodeList2.getLength() > nodeList1.getLength()) {
-                    Total.append(nodeList2.iterator().next());
-                    nodeList2.remove(nodeList2.iterator().next());
-                    Remainder.append(0);
-
-                }
-
-                if (nodeList1.getLength() == nodeList2.getLength()) {
-                    append = nodeList1.iterator().next() + nodeList2.iterator().next();
-                    nodeList1.remove(nodeList1.iterator().next());
-                    nodeList2.remove(nodeList2.iterator().next());
-                    if (append >= 10) {
-                        append %= 10;
-                        Remainder.append(1);
-                        noRemainder = false;
-                    } else {
-                        Remainder.append(0);
-                    }
-                    Total.append(append);
-                }
-            }
+        while(nodeList1.getLength() > nodeList2.getLength()){
+            Total.append(nodeList1.iterator().next());
+            nodeList1.remove(nodeList1.iterator().next());
             Remainder.append(0);
-            if (noRemainder) {
-                while (Total.iterator().next() == 0) {
-                    Total.remove(0);
-                }
-                return Total;
-            } else {
-                return addition(Total, Remainder);
-            }
-
-
         }
+
+        while(nodeList2.getLength() > nodeList1.getLength()){
+            Total.append(nodeList2.iterator().next());
+            nodeList2.remove(nodeList2.iterator().next());
+            Remainder.append(0);
+        }
+
+        while (nodeList1.iterator().hasNext() && nodeList2.iterator().hasNext()) {
+            Total.append((nodeList1.iterator().next() + nodeList2.iterator().next()) % 10);
+            Remainder.append((nodeList1.iterator().next() + nodeList2.iterator().next()) / 10);
+            noRemainder = nodeList1.iterator().next() + nodeList2.iterator().next() >= 10 ? false : noRemainder;
+            nodeList1.remove(nodeList1.iterator().next());
+            nodeList2.remove(nodeList2.iterator().next());
+        }
+        Remainder.append(0);
+        while (Total.iterator().hasNext() && Total.iterator().next() == 0) {
+            Total.remove(0);
+        }
+        return noRemainder ? Total : addition(Total,Remainder);
+    }
 
 
 

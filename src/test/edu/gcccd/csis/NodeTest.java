@@ -33,8 +33,8 @@ public class NodeTest {
 
 
 
-        String fileName = "NodeList.bin";
-        File file = new File(fileName);
+    String fileName = "NodeList.bin";
+    File file = new File(fileName);
 
 
 
@@ -74,16 +74,23 @@ public class NodeTest {
 
     }
 
-        @Test
-        public void testEmptyListAddition() {
+    @Test
+    public void testEmptyListAddition() {
 
-            //testing an empty list
-            final NodeList<Integer> e1 = new NodeList<>();
-            final NodeList<Integer> e2 = new NodeList<>();
-            final NodeList<Integer> e3 = new MyProject2().addition(e1, e2);
-            assertEquals(0, e3.getLength());
-            assertEquals(BigInteger.valueOf(0), genBigInteger(e3));
+        //testing an empty list
+        final NodeList<Integer> e1 = new NodeList<>();
+        final NodeList<Integer> e2 = new NodeList<>();
+        NodeList<Integer> e3 = new MyProject2().addition(e1, e2);
+        assertEquals(0, e3.getLength());
+        NodeList<Integer> e4 = new NodeList<Integer>();
+        for(int i = 0; i < 10;i++) {
+            e4.append(i);
         }
+        e3 = new MyProject2().addition(e4,e1);
+        assertEquals(BigInteger.valueOf(123456789),genBigInteger(e3));
+
+
+    }
 
     @Test
     public void testZeroAddition() {
@@ -128,11 +135,11 @@ public class NodeTest {
         final BigInteger Z3v5 = Zerosv5.add(Z2v5);
         assertEquals(Z3v5, genBigInteger(z3v5));
 
-        }
+    }
 
 
 
-   //testing Iterator cases
+    //testing Iterator addition
 
     @Test
     public void testNormalAdditionIterator()
@@ -173,10 +180,16 @@ public class NodeTest {
         final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
         for (int i = 0; i < 3; i++) {
             listOfLists.append(new NodeList<Integer>());
-
         }
-        final NodeList<Integer> addition = new MyProject2().addition(listOfLists.iterator());
-        assertNull(addition);
+        NodeList<Integer> addition = new MyProject2().addition(listOfLists.iterator());
+        assertEquals(0,addition.getLength());
+        final NodeList<Integer> emptyListAdder = new NodeList<Integer>();
+        for(int i = 0; i < 10;i++) {
+            emptyListAdder.append(i);
+        }
+        listOfLists.append(emptyListAdder);
+        addition = new MyProject2().addition(listOfLists.iterator());
+        assertEquals(BigInteger.valueOf(123456789),genBigInteger(addition));
     }
 
 
