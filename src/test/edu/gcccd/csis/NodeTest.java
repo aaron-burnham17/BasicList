@@ -208,20 +208,24 @@ public class NodeTest {
 
         NodeList<Integer> testSave = new NodeList<Integer>();
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(fileName));
-            int c;
-            while ((c = br.read()) != -1) {
-                if (c >= 48 && c <= 57) {
-                    testSave.append((c - 48));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assertEquals(genBigInteger(testSave), N3);
+        assertEquals(genBigInteger(p.load(fileName)), N3);
 
     }
+
+    @Test
+    public void testLoad()
+    {
+        MyProject2 p = new MyProject2();
+        final NodeList<Integer> n1 = Project2.generateNumber(30);
+        final NodeList<Integer> n2 = Project2.generateNumber(30);
+        final NodeList<Integer> n3 = p.addition(n1, n2);
+        final BigInteger N3 = genBigInteger(n3);
+        p.save(n3, fileName);
+
+       assertEquals(genBigInteger(n3), genBigInteger(p.load(fileName)));
+
+    }
+
     @After
     public void deleteFileBefore()
     {
