@@ -7,23 +7,29 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> addition(NodeList<Integer> nodeList1, NodeList<Integer> nodeList2) {
+        if(nodeList1 == null || nodeList2 == null){
+            return null;
+        }
 
         NodeList<Integer> Total = new NodeList<Integer>();
         NodeList<Integer> Remainder = new NodeList<Integer>();
         boolean noRemainder = true;
 
+        //nodelist1 > nodelist2 case
         while(nodeList1.getLength() > nodeList2.getLength()){
             Total.append(nodeList1.iterator().next());
             nodeList1.remove(nodeList1.iterator().next());
             Remainder.append(0);
         }
 
+        //nodelist2 > nodeList1 case
         while(nodeList2.getLength() > nodeList1.getLength()){
             Total.append(nodeList2.iterator().next());
             nodeList2.remove(nodeList2.iterator().next());
             Remainder.append(0);
         }
 
+        //Stores additives that are >= 10 into a remainder nodelist in order to add it through the next recursive call of addition
         while (nodeList1.iterator().hasNext() && nodeList2.iterator().hasNext()) {
             Total.append((nodeList1.iterator().next() + nodeList2.iterator().next()) % 10);
             Remainder.append((nodeList1.iterator().next() + nodeList2.iterator().next()) / 10);
@@ -31,10 +37,14 @@ public class MyProject2 implements Project2 {
             nodeList1.remove(nodeList1.iterator().next());
             nodeList2.remove(nodeList2.iterator().next());
         }
+
         Remainder.append(0);
+
+        //Removes unnecessary zeros
         while (Total.iterator().hasNext() && Total.iterator().next() == 0) {
             Total.remove(0);
         }
+        //Recursive Call to addition to add the remaining remainder values
         return noRemainder ? Total : addition(Total,Remainder);
     }
 
@@ -43,6 +53,7 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
+        //Priming
         NodeList<Integer> addOperand = iterator.next();
         return iterator.hasNext() ? addition(addOperand,addition(iterator)) : addOperand;
     }
@@ -95,8 +106,7 @@ public class MyProject2 implements Project2 {
 
 
         final Project2 p = new MyProject2();
-
-//        Project2.print(p.addition(n1, n2)); //  n1+n2, e.g. 4139
+        Project2.print(p.addition(n1, n2)); //  n1+n2, e.g. 4139
 
         final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
         for (int i = 0; i < L; i++) {
@@ -105,17 +115,6 @@ public class MyProject2 implements Project2 {
 
         p.save(p.addition(listOfLists.iterator()), "result.bin");
         Project2.print(p.load("result.bin"));
-//        Project2.print(p.addition(listOfLists.iterator()));
-
-        //p.save(p.addition(listOfLists.iterator()), "result.bin");
-        //Project2.print(p.load("result.bin"));
-        
-
-//
-//        p.save(p.addition(listOfLists.iterator()), "result.bin");
-//        Project2.print(p.load("result.bin"));
-
-
     }
 }
 

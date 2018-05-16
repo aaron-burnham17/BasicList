@@ -58,6 +58,17 @@ public class NodeTest {
     }
 
     @Test
+    public void testNullAddition(){
+        final NodeList<Integer> n1 = null;
+        final NodeList<Integer> n2 = null;
+        assertNull(new MyProject2().addition(n1,n2));
+
+        final NodeList<Integer> n3 =  new NodeList<Integer>();
+        n3.append(1);
+        assertNull(new MyProject2().addition(n1,n3));
+    }
+
+    @Test
     public void testRemainderAddition()
     {
         final NodeList<Integer> r1 = new NodeList<Integer>();
@@ -150,6 +161,17 @@ public class NodeTest {
         }
         final NodeList<Integer> addition = new MyProject2().addition(listOfLists.iterator());
         assertEquals(BigInteger.valueOf(999), genBigInteger(addition));
+    }
+
+    @Test
+    public void testNullAdditionIterator()
+    {
+        final NodeList<NodeList<Integer>> listOfLists =  new NodeList<>();
+        for(int i = 0; i < 3;i++){
+            listOfLists.append(null);
+        }
+        final NodeList<Integer> addition = new MyProject2().addition(listOfLists.iterator());
+        assertNull(addition);
     }
 
     @Test
