@@ -7,45 +7,45 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> addition(NodeList<Integer> nodeList1, NodeList<Integer> nodeList2) {
-
         //null case
         if(nodeList1 == null || nodeList2 == null){
             return nodeList1 == null ? nodeList2 : nodeList1;
         }
+
+        Iterator<Integer> iterator1 = nodeList1.iterator();
+        Iterator<Integer> iterator2 = nodeList2.iterator();
 
         NodeList<Integer> Total = new NodeList<>();
         NodeList<Integer> Remainder = new NodeList<>();
         boolean noRemainder = true;
 
         //nodelist1 > nodelist2 case
-        while(nodeList1.getLength() > nodeList2.getLength()){
-            Total.append(nodeList1.iterator().next());
-            nodeList1.remove(nodeList1.iterator().next());
+        while(nodeList1.getLength() - Total.getLength() > nodeList2.getLength()){
+            Total.append(iterator1.next());
             Remainder.append(0);
         }
 
         //nodelist2 > nodeList1 case
-        while(nodeList2.getLength() > nodeList1.getLength()){
-            Total.append(nodeList2.iterator().next());
-            nodeList2.remove(nodeList2.iterator().next());
+        while(nodeList2.getLength() - Total.getLength() > nodeList1.getLength()){
+            Total.append(iterator2.next());
             Remainder.append(0);
         }
 
         //Stores sums that are >= 10 into a remainder nodelist in order to add it through the next recursive call of addition
-        while (nodeList1.iterator().hasNext() && nodeList2.iterator().hasNext()) {
-            Total.append((nodeList1.iterator().next() + nodeList2.iterator().next()) % 10);
-            Remainder.append((nodeList1.iterator().next() + nodeList2.iterator().next()) / 10);
-            noRemainder = nodeList1.iterator().next() + nodeList2.iterator().next() >= 10 ? false : noRemainder;
-            nodeList1.remove(nodeList1.iterator().next());
-            nodeList2.remove(nodeList2.iterator().next());
+        while (iterator1.hasNext() && iterator2.hasNext()) {
+            int append = iterator1.next() + iterator2.next();
+            Total.append(append % 10);
+            Remainder.append(append / 10);
+            noRemainder = append >= 10 ? false : noRemainder;
         }
 
         Remainder.append(0);
 
-        //Removes unnecessary zeros
-        while (Total.iterator().hasNext() && Total.iterator().next() == 0) {
+        //Removes unnecessary zeros and leaves a remaining zero given there is zero addition present
+        while (Total.getLength() > 1 && Total.iterator().hasNext() && Total.iterator().next() == 0) {
             Total.remove(0);
         }
+
         //Recursive Call to addition to add the remaining remainder values
         return noRemainder ? Total : addition(Total,Remainder);
     }
@@ -61,7 +61,7 @@ public class MyProject2 implements Project2 {
     public void save(NodeList<Integer> nodeList, String fileName) {
         try
         {
-            BufferedWriter fw = new BufferedWriter(new FileWriter(fileName,true));
+            BufferedWriter fw = new BufferedWriter(new FileWriter(fileName,false));
             for (final Integer i : nodeList) {
                 fw.write(i.toString());
             }
