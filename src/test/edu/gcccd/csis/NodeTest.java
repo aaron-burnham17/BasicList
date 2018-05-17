@@ -79,6 +79,9 @@ public class NodeTest {
         final NodeList<Integer> n3 =  new NodeList<>();
         n3.append(1);
         assertNull(new MyProject2().addition(n1,n2));
+        assertEquals(genBigInteger(n3),genBigInteger(new MyProject2().addition(n1,n3)));
+        assertEquals(genBigInteger(n3),genBigInteger(new MyProject2().addition(n3,n1)));
+
     }
 
     @Test

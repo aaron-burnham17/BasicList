@@ -3,7 +3,6 @@ package edu.gcccd.csis;
 import java.util.Iterator;
 
 public final class NodeList<E> implements Iterable<E> {
-
     private Node<E> head;
 
     /**

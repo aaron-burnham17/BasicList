@@ -31,7 +31,7 @@ public class MyProject2 implements Project2 {
             Remainder.append(0);
         }
 
-        //Stores additives that are >= 10 into a remainder nodelist in order to add it through the next recursive call of addition
+        //Stores sums that are >= 10 into a remainder nodelist in order to add it through the next recursive call of addition
         while (nodeList1.iterator().hasNext() && nodeList2.iterator().hasNext()) {
             Total.append((nodeList1.iterator().next() + nodeList2.iterator().next()) % 10);
             Remainder.append((nodeList1.iterator().next() + nodeList2.iterator().next()) / 10);
@@ -49,11 +49,6 @@ public class MyProject2 implements Project2 {
         //Recursive Call to addition to add the remaining remainder values
         return noRemainder ? Total : addition(Total,Remainder);
     }
-
-
-
-    /*Big O for the addition(Iterator) method: the amount of times the Itertor.next method gets called is dependent on the largest NodeList's elements.
-    Thus the equation used is O(n). As for the number of Nodelists available, the Iterator.next method is independent of it thus it runs O(1)**/
 
     @Override
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
