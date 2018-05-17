@@ -32,8 +32,13 @@ An example of such an arrangement is shown as follows:
 
 8888889 + 111111
 
-In this case we can see that the remainder leftover from the least signficant digit incurs a domino effect on the remaining digits, calling the addition method recursively for each individual pairing of elements, which now renders our complexity for addition O(n^2).
+In this case we can see that the remainder leftover from the least signficant digit incurs a domino effect, calling the addition method recursively for each individual pairing of elements, which now renders our complexity for addition O(n^2).
 
 Next we must apply this value to our second summation method addition(Iterator<NodeList<Integer>> iterator).
 
-Within this summation method we can see that there is first a priming call to iterator.next() for each call of it. Within the method we can also see that the method itself calls addition(nodeList1, nodeList2) recursively until there are no more NodeLists left to recursively call the method on. With this we can assume that the first priming call creates at most linear complexity, and that the recursive call is also n, however, due to the dependence on the recursive call creates a multiplicative relation between the two such that their relationship could be expressed as follows. n1 + n1(n1^2) + n2 + n2(n2^2) + ... + n + n(n^2) which we can simplify to O(n + n^3). With enough nodelists within our iterator, we can drop the n as the n^3, by definition, grows at a much faster rate than n, rendering the final complexity for our addition(Iterator<NodeList<Integer>> iterator) O(n^3).  
+Within our method we can see that there is first a priming call to iterator.next() per call. Within the method we can also see that the method itself calls addition(nodeList1, nodeList2) recursively until there are no more NodeLists left to recursively call the method on. With this we can assume that the first priming call creates at most linear complexity, however, due to the dependence on the recursive call creates a multiplicative relation between the two such that the complexity could be expressed as follows:
+
+(n1 + n1(n1^2)) + (n2 + n2(n2^2)) + ... + (n + n(n^2)) 
+
+Which we can simplify to O(n + n^3). With enough nodelists within our iterator, we can drop the n as the n^3, by definition, grows at a much faster rate than n, making the final complexity for our 
+addition(Iterator<NodeList<Integer>> iterator) method O(n^3).  

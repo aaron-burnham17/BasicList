@@ -50,9 +50,6 @@ public class NodeTest {
     }
 
 
-
-
-
     //testing normal addition cases
 
     @Test
@@ -246,34 +243,7 @@ public class NodeTest {
         assertTrue(file.exists());
 
     }
-
-    @Test
-    public void testSaveCorrectly(){
-        MyProject2 p = new MyProject2();
-        final NodeList<Integer> n1 = Project2.generateNumber(30);
-        final NodeList<Integer> n2 = Project2.generateNumber(30);
-        final NodeList<Integer> n3 = p.addition(n1, n2);
-        p.save(n3, fileName);
-
-        BigInteger N3 = genBigInteger(n3);
-
-        assertEquals(genBigInteger(p.load(fileName)), N3);
-
-    }
-
-    @Test
-    public void testLoad()
-    {
-        MyProject2 p = new MyProject2();
-        final NodeList<Integer> n1 = Project2.generateNumber(30);
-        final NodeList<Integer> n2 = Project2.generateNumber(30);
-        final NodeList<Integer> n3 = p.addition(n1, n2);
-
-        p.save(n3, fileName);
-
-        assertEquals(genBigInteger(n3), genBigInteger(p.load(fileName)));
-
-    }
+    
     @Test
     public void testAddition() {
 
@@ -301,7 +271,7 @@ public class NodeTest {
         new MyProject2().save(n, fileName);
         assertEquals(b, genBigInteger(new MyProject2().load(fileName)));
 
-// corner cases ...
+        // corner cases ...
         new MyProject2().save(new NodeList<>(), fileName);
         assertEquals(0, new MyProject2().load(fileName).getLength());
     }
@@ -315,29 +285,29 @@ public class NodeTest {
         NodeList<Integer> n3 = new MyProject2().addition(n1, n2);
         assertEquals(new BigInteger("17"), genBigInteger(n3));
 
-// no leading 0s
+        // no leading 0s
         assertEquals(2, n3.getLength());
 
-// app does not crash on empty lists ...
+        // app does not crash on empty lists ...
         n1 = new NodeList<>();
         n2 = new NodeList<>();
         n3 = new MyProject2().addition(n1, n2);
 
-// 0 + 0 = 0
+        // 0 + 0 = 0
         n1 = genNodeList("0");
         n2 = genNodeList("0");
         n3 = new MyProject2().addition(n1, n2);
         assertEquals(1, n3.getLength());
         assertEquals(new BigInteger("0"), genBigInteger(n3));
 
-// 0 + empty list = 0
+        // 0 + empty list = 0
         System.out.println("\n\n");
         n2 = new NodeList<>();
         n3 = new MyProject2().addition(n1, n2);
         assertEquals(1, n3.getLength());
         assertEquals(new BigInteger("0"), genBigInteger(n3));
 
-// empty list + 0 = 0
+        // empty list + 0 = 0
         n3 = new MyProject2().addition(n2, n1);
         assertEquals(1, n3.getLength());
         assertEquals(new BigInteger("0"), genBigInteger(n3));
