@@ -52,7 +52,7 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
-        //Priming
+        //Priming call to iterator.next() to make sure recursive call functions correctly.
         NodeList<Integer> addOperand = iterator.next();
         return iterator.hasNext() ? addition(addOperand,addition(iterator)) : addOperand;
     }
