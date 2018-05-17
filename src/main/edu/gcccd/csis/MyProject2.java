@@ -46,7 +46,7 @@ public class MyProject2 implements Project2 {
             Total.remove(0);
         }
 
-        //Recursive Call to addition to add the remaining remainder values
+        //Recursive call to addition to add the carry values
         return noRemainder ? Total : addition(Total,Remainder);
     }
 

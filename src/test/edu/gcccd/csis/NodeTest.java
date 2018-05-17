@@ -243,7 +243,7 @@ public class NodeTest {
         assertTrue(file.exists());
 
     }
-    
+
     @Test
     public void testAddition() {
 
