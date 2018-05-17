@@ -1,13 +1,14 @@
 package edu.gcccd.csis;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
 import java.math.BigInteger;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Iterator;
+import java.nio.file.Paths;
+
 
 
 import static org.junit.Assert.*;
@@ -35,6 +36,18 @@ public class NodeTest {
 
     String fileName = "NodeList.bin";
     File file = new File(fileName);
+    Path path = Paths.get(fileName);
+
+    @Before
+    public void deleteFiles()
+    {
+        try {
+            Files.deleteIfExists(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
@@ -63,7 +76,7 @@ public class NodeTest {
         final NodeList<Integer> n2 = null;
         assertNull(new MyProject2().addition(n1,n2));
 
-        final NodeList<Integer> n3 =  new NodeList<Integer>();
+        final NodeList<Integer> n3 =  new NodeList<>();
         n3.append(1);
         assertNull(new MyProject2().addition(n1,n2));
     }
@@ -71,8 +84,8 @@ public class NodeTest {
     @Test
     public void testRemainderAddition()
     {
-        final NodeList<Integer> r1 = new NodeList<Integer>();
-        final NodeList<Integer> r2 = new NodeList<Integer>();
+        final NodeList<Integer> r1 = new NodeList<>();
+        final NodeList<Integer> r2 = new NodeList<>();
         r1.append(8);
         r1.append(8);
         r1.append(8);
@@ -93,7 +106,7 @@ public class NodeTest {
         final NodeList<Integer> e2 = new NodeList<>();
         NodeList<Integer> e3 = new MyProject2().addition(e1, e2);
         assertEquals(0, e3.getLength());
-        NodeList<Integer> e4 = new NodeList<Integer>();
+        NodeList<Integer> e4 = new NodeList<>();
         for(int i = 0; i < 10;i++) {
             e4.append(i);
         }
@@ -201,11 +214,11 @@ public class NodeTest {
     {
         final NodeList<NodeList<Integer>> listOfLists = new NodeList<>();
         for (int i = 0; i < 3; i++) {
-            listOfLists.append(new NodeList<Integer>());
+            listOfLists.append(new NodeList<>());
         }
         NodeList<Integer> addition = new MyProject2().addition(listOfLists.iterator());
         assertEquals(0,addition.getLength());
-        final NodeList<Integer> emptyListAdder = new NodeList<Integer>();
+        final NodeList<Integer> emptyListAdder = new NodeList<>();
         for(int i = 0; i < 10;i++) {
             emptyListAdder.append(i);
         }
@@ -241,8 +254,6 @@ public class NodeTest {
 
         BigInteger N3 = genBigInteger(n3);
 
-        NodeList<Integer> testSave = new NodeList<Integer>();
-
         assertEquals(genBigInteger(p.load(fileName)), N3);
 
     }
@@ -254,18 +265,13 @@ public class NodeTest {
         final NodeList<Integer> n1 = Project2.generateNumber(30);
         final NodeList<Integer> n2 = Project2.generateNumber(30);
         final NodeList<Integer> n3 = p.addition(n1, n2);
-        final BigInteger N3 = genBigInteger(n3);
+
         p.save(n3, fileName);
 
-       assertEquals(genBigInteger(n3), genBigInteger(p.load(fileName)));
+        assertEquals(genBigInteger(n3), genBigInteger(p.load(fileName)));
 
     }
 
-    @After
-    public void deleteFileBefore()
-    {
-        file.delete();
-    }
 
 }
 

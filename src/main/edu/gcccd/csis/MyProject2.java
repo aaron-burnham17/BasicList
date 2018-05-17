@@ -13,8 +13,8 @@ public class MyProject2 implements Project2 {
             return nodeList1 == null ? nodeList2 : nodeList1;
         }
 
-        NodeList<Integer> Total = new NodeList<Integer>();
-        NodeList<Integer> Remainder = new NodeList<Integer>();
+        NodeList<Integer> Total = new NodeList<>();
+        NodeList<Integer> Remainder = new NodeList<>();
         boolean noRemainder = true;
 
         //nodelist1 > nodelist2 case
@@ -52,6 +52,8 @@ public class MyProject2 implements Project2 {
 
 
 
+    /*Big O for the addition(Iterator) method: the amount of times the Itertor.next method gets called is dependent on the largest NodeList's elements.
+    Thus the equation used is O(n). As for the number of Nodelists available, the Iterator.next method is independent of it thus it runs O(1)**/
 
     @Override
     public NodeList<Integer> addition(Iterator<NodeList<Integer>> iterator) {
@@ -81,11 +83,11 @@ public class MyProject2 implements Project2 {
     @Override
     public NodeList<Integer> load(String fileName) {
 
-        NodeList list = new NodeList();
+        NodeList<Integer> list = new NodeList<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
 
-            int c = 0;
+            int c;
             while( (c = br.read()) != -1){
                 if (c >= 48 && c <=57) {
                     list.append( (c-48) );
