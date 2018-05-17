@@ -65,7 +65,7 @@ public class NodeTest {
 
         final NodeList<Integer> n3 =  new NodeList<Integer>();
         n3.append(1);
-        assertNull(new MyProject2().addition(n1,n3));
+        assertNull(new MyProject2().addition(n1,n2));
     }
 
     @Test

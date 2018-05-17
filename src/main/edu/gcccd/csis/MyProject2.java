@@ -7,8 +7,10 @@ public class MyProject2 implements Project2 {
 
     @Override
     public NodeList<Integer> addition(NodeList<Integer> nodeList1, NodeList<Integer> nodeList2) {
+
+        //null case
         if(nodeList1 == null || nodeList2 == null){
-            return null;
+            return nodeList1 == null ? nodeList2 : nodeList1;
         }
 
         NodeList<Integer> Total = new NodeList<Integer>();
